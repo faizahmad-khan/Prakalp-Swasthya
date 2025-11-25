@@ -1,0 +1,48 @@
+{
+  "app_name": "SwasthyaGuide",
+  "version": "1.0.0",
+  "default_language": "hindi",
+  "supported_languages": [
+    "hindi",
+    "english",
+    "marathi",
+    "bengali",
+    "tamil",
+    "telugu",
+    "punjabi",
+    "gujarati"
+  ],
+  "emergency_number": "108",
+  "clinic_search_radius_km": 5,
+  "max_clinics_to_show": 3,
+  "enable_logging": true,
+  "conversation_timeout_minutes": 30,
+  "disclaimer": {
+    "hindi": "Yeh medical diagnosis nahi hai. Agar condition serious lage toh turant doctor ko dikhaaye.",
+    "english": "This is not a medical diagnosis. If the condition seems serious, please consult a doctor immediately."
+  },
+  "emergency_message": {
+    "hindi": "Yeh emergency jaisa lag raha hai. Kripya turant apne najdeeki hospital ya emergency service se sampark karein.",
+    "english": "This seems like an emergency. Please contact your nearest hospital or emergency service immediately."
+  },
+  "features": {
+    "symptom_checker": true,
+    "clinic_finder": true,
+    "emergency_detection": true,
+    "women_health": true,
+    "multilingual": true
+  },
+  "response_format": {
+    "include_emoji": true,
+    "include_disclaimer": true,
+    "include_clinic_prompt": true,
+    "numbered_points": true
+  },
+  "safety_rules": {
+    "no_diagnosis": true,
+    "no_prescription": true,
+    "no_dosage": true,
+    "refer_to_doctor": true,
+    "emergency_alert": true
+  }
+}
