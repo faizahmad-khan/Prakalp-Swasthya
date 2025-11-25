@@ -1,0 +1,37 @@
+# SwasthyaGuide - Python Dependencies
+
+# Core Python libraries (usually included)
+# - json (built-in)
+# - re (built-in)
+# - typing (built-in)
+# - datetime (built-in)
+
+# Optional: For enhanced features (uncomment as needed)
+
+# For advanced NLP and language detection
+# langdetect==1.0.9
+# googletrans==4.0.0rc1
+
+# For location services
+# geopy==2.3.0
+
+# For web interface (Flask)
+# flask==2.3.2
+# flask-cors==4.0.0
+
+# For database support
+# sqlite3 (built-in)
+# pymongo==4.4.1
+
+# For API integration
+# requests==2.31.0
+
+# For testing
+# pytest==7.4.0
+# pytest-cov==4.1.0
+
+# For deployment
+# gunicorn==21.2.0
+
+# Note: The basic chatbot runs without any external dependencies.
+# Uncomment packages above only if you need those specific features.
