@@ -2,6 +2,47 @@
 
 **SwasthyaGuide** is a compassionate, multilingual healthcare chatbot designed for urban and semi-urban users in India, including people with low literacy levels. It provides simple, safe health guidance via **WhatsApp** and helps users find nearby clinics when needed.
 
+---
+
+## 💬 Try It Now on WhatsApp!
+
+**Want to experience SwasthyaGuide?** Send a message to our chatbot on WhatsApp:
+
+### 📱 How to Get Started:
+
+1. **Open WhatsApp** on your phone
+
+2. **Save this number:** `+1 415 523 8886`
+
+3. **Send this activation code:**
+   ```
+   join yellow-cheese
+   ```
+
+4. **Start chatting!** Try messages like:
+   - `Mujhe sir dard ho raha hai` (Hindi)
+   - `I have fever` (English)
+   - `Mumbai mein clinic chahiye` (Find clinic)
+   - `chest pain` (Emergency test)
+
+### 🎯 Example Conversations:
+
+```
+You: Mujhe bukhar hai
+Bot: [Provides fever guidance in Hindi]
+
+You: Doctor chahiye Andheri
+Bot: [Lists nearby clinics with addresses]
+
+You: chest pain
+Bot: [Sends emergency alert with 108 number]
+```
+
+**📲 WhatsApp Number:** +1 415 523 8886  
+**🔑 Activation Code:** `join yellow-cheese`
+
+---
+
 ## ✨ Features
 
 ### 🌐 Multilingual Support
@@ -159,7 +200,16 @@ Prakalp-Swasthya/
 
 ## 🎯 Usage Examples
 
-### WhatsApp Interaction:
+### 📱 Live WhatsApp Demo
+
+**Try it yourself!**
+1. WhatsApp: `+1 415 523 8886`
+2. Send: `join yellow-cheese`
+3. Start asking health questions!
+
+---
+
+### WhatsApp Interaction Examples:
 
 **Example 1: Hindi Query**
 ```
@@ -242,10 +292,17 @@ curl http://localhost:5000/health
 ```
 
 ### WhatsApp Testing
+**Try the live bot right now!**
+
+1. **Add to WhatsApp:** +1 415 523 8886
+2. **Activate:** Send `join yellow-cheese`
+3. **Start chatting:** Try `Mujhe sir dard ho raha hai`
+
+Or deploy your own:
 1. Deploy to Render
 2. Configure Twilio webhook
-3. Send message to Twilio number
-4. Get health guidance!
+3. Set up your WhatsApp number
+4. Start helping users!
 
 ## 🔒 Security
 
@@ -299,11 +356,21 @@ Contributions are welcome! Please:
 
 This project is licensed under the MIT License.
 
-## 📞 Support
+## 📞 Support & Contact
 
-- **Issues**: Open an issue on GitHub
+### 💬 Try the Live Bot
+- **WhatsApp:** +1 415 523 8886
+- **Activation:** Send `join yellow-cheese`
+- **Available:** 24/7
+
+### 🐛 Report Issues
+- **GitHub Issues**: [Open an issue](https://github.com/anubhavy-05/Prakalp-Swasthya/issues)
 - **Documentation**: See [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)
-- **Email**: Contact repository owner
+- **Repository**: [github.com/anubhavy-05/Prakalp-Swasthya](https://github.com/anubhavy-05/Prakalp-Swasthya)
+
+### 🌐 Live Demo
+- **Web App**: https://prakalp-swasthya.onrender.com
+- **Health Check**: https://prakalp-swasthya.onrender.com/health
 
 ## 🎉 Acknowledgments
 
