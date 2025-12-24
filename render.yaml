@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: swasthyaguide-whatsapp
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_DEBUG
+        value: False
+      - key: TWILIO_PHONE_NUMBER
+        value: whatsapp:+14155238886
+      - key: APP_NAME
+        value: SwasthyaGuide
+      - key: APP_VERSION
+        value: 1.0.0
+      - key: LOG_LEVEL
+        value: INFO
+      # Add these in Render Dashboard (sensitive):
+      # - FLASK_SECRET_KEY
+      # - TWILIO_ACCOUNT_SID
+      # - TWILIO_AUTH_TOKEN
