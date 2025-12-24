@@ -1,31 +1,40 @@
 # 🏥 SwasthyaGuide - Multilingual Healthcare Assistant
 
-**SwasthyaGuide** is a compassionate, multilingual healthcare chatbot designed for urban and semi-urban users in India, including people with low literacy levels. It provides simple, safe health guidance via **WhatsApp** and helps users find nearby clinics when needed.
+<div align="center">
+
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Flask](https://img.shields.io/badge/Flask-3.0.0-green.svg)](https://flask.palletsprojects.com/)
+[![Twilio](https://img.shields.io/badge/Twilio-WhatsApp-red.svg)](https://www.twilio.com/whatsapp)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+**A compassionate, multilingual healthcare chatbot for accessible health guidance in India 🇮🇳**
+
+[Try on WhatsApp](#-try-it-now) • [Features](#-features) • [Deploy Your Own](#-deployment) • [Documentation](#-documentation)
+
+</div>
 
 ---
 
-## 🚀 How to Start
+## 📱 Try It Now on WhatsApp!
 
-### 💬 Try It Now on WhatsApp!
+**Experience SwasthyaGuide in action:**
 
-**Want to experience SwasthyaGuide?** Send a message to our chatbot on WhatsApp:
+### Quick Start (30 seconds):
 
-### 📱 How to Get Started:
+1. **Open WhatsApp** on your phone 📲
 
-1. **Open WhatsApp** on your phone
+2. **Message this number:** [**+1 415 523 8886**](https://wa.me/14155238886?text=join%20yellow-cheese)
 
-2. **Save this number:** [+1 415 523 8886](https://wa.me/14155238886)
-
-3. **Send this activation code:**
+3. **Send activation code:**
    ```
    join yellow-cheese
    ```
 
-4. **Start chatting!** Try messages like:
-   - `Mujhe sir dard ho raha hai` (Hindi)
+4. **Start chatting!** Try:
+   - `Mujhe sir dard ho raha hai` (Hindi - Headache)
    - `I have fever` (English)
    - `Mumbai mein clinic chahiye` (Find clinic)
-   - `chest pain` (Emergency test)
+   - `chest pain` (Emergency detection)
 
 ### 🎯 Example Conversations:
 
@@ -107,52 +116,91 @@ Interactive symptom assessment:
 - ❌ Give harmful home remedies
 - ❌ Make unsupported medical claims
 
-## 🚀 Quick Start
+## 🚀 Quick Start Guide
 
-### Option 1: Automated Setup (Recommended)
-```bash
-python setup.py
-```
+### For Users: Try the Live Bot
+👉 **[Click here to chat on WhatsApp](https://wa.me/14155238886?text=join%20yellow-cheese)** 👈
 
-### Option 2: Manual Setup
+### For Developers: Deploy Your Own
+
+#### Option 1: One-Click Deploy to Render (Recommended)
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com)
+
+1. Click the button above
+2. Connect your GitHub account
+3. Add environment variables:
+   - `TWILIO_ACCOUNT_SID` - Get from [Twilio Console](https://console.twilio.com)
+   - `TWILIO_AUTH_TOKEN` - Get from [Twilio Console](https://console.twilio.com)
+   - `FLASK_SECRET_KEY` - Generate: `python -c "import secrets; print(secrets.token_hex(32))"`
+4. Deploy! ✨
+
+#### Option 2: Local Development
+
 ```bash
-# 1. Install dependencies
+# Clone the repository
+git clone https://github.com/anubhavy-05/Prakalp-Swasthya.git
+cd Prakalp-Swasthya
+
+# Install dependencies
 pip install -r requirements.txt
 
-# 2. Create .env file
+# Create .env file from template
 copy .env.example .env
 
-# 3. Edit .env with your Twilio credentials
+# Edit .env with your credentials
 notepad .env
 
-# 4. Run locally
+# Test the bot locally
+python test_webhook.py
+
+# Run the web server
 python app.py
 ```
+
+**Visit:** http://localhost:5000 to see if it's running
 
 ## 📁 Project Structure
 
 ```
 Prakalp-Swasthya/
-├── app.py                     # Flask web application (WhatsApp webhook)
-├── main.py                    # CLI entry point
-├── chatbot.py                 # Main orchestrator
-├── config_loader.py           # Environment configuration
-├── language_detector.py       # Language detection
-├── emergency_handler.py       # Emergency detection & responses
-├── symptom_checker.py         # Symptom extraction
-├── health_responses.py        # Health guidance templates
-├── clinic_finder.py          # Clinic search functionality
-├── setup.py                   # Automated setup script
-├── requirements.txt           # Python dependencies
-├── Procfile                   # Render deployment config
-├── .env.example              # Environment variables template
-├── .gitignore                # Git ignore rules
-├── config.json               # App configuration
-├── README.md                 # This file
-├── DEPLOYMENT_GUIDE.md       # Complete deployment guide
-└── data/
-    ├── clinics.json         # Clinic database
-    └── translations.json    # Language translations
+├── 🚀 Core Application
+│   ├── app.py                     # Flask webhook server (WhatsApp integration)
+│   ├── main.py                    # CLI entry point for testing
+│   ├── chatbot.py                 # Main orchestrator & conversation flow
+│   └── test_webhook.py            # Local testing script
+│
+├── 🧠 Intelligence Modules
+│   ├── language_detector.py       # Automatic language detection
+│   ├── emergency_handler.py       # Critical symptom detection
+│   ├── symptom_checker.py         # Symptom extraction & analysis
+│   ├── health_responses.py        # Medical guidance templates
+│   └── clinic_finder.py           # Location-based clinic search
+│
+├── ⚙️ Configuration
+│   ├── config_loader.py           # Environment variable management
+│   ├── config.json                # App settings & features
+│   ├── .env.example               # Template for secrets
+│   └── .gitignore                 # Git exclusion rules
+│
+├── 🗂️ Data
+│   ├── data/clinics.json          # Medical facility database
+│   └── data/translations.json     # Multilingual content
+│
+├── 🚢 Deployment
+│   ├── requirements.txt           # Python dependencies
+│   ├── Procfile                   # Heroku/Render config
+│   ├── render.yaml                # Render deployment config
+│   └── setup.py                   # Automated setup script
+│
+└── 📖 Documentation
+    ├── README.md                  # Main documentation (you are here)
+    ├── DEPLOYMENT_GUIDE.md        # Step-by-step deployment
+    ├── WHY_NOT_WORKING.md         # Troubleshooting guide
+    ├── WEBHOOK_FIX.md             # Webhook configuration help
+    ├── ARCHITECTURE.md            # System architecture
+    ├── PROJECT_SUMMARY.md         # Project overview
+    └── QUICK_START.md             # Quick reference
 ```
 
 ## 📋 Installation
@@ -189,16 +237,44 @@ Prakalp-Swasthya/
 
 ## 🌐 Deployment
 
-### Deploy to Render (Free)
+### Deploy to Render (FREE - Recommended)
 
-**Full step-by-step guide:** See [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)
+**📖 Complete Guide:** [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) | **🆘 Troubleshooting:** [WHY_NOT_WORKING.md](WHY_NOT_WORKING.md)
 
-**Quick steps:**
-1. Push code to GitHub
-2. Create Render web service
-3. Add environment variables
-4. Configure Twilio webhook
-5. Test on WhatsApp!
+**Quick Deploy Steps:**
+
+1. **Push to GitHub**
+   ```bash
+   git add .
+   git commit -m "Deploy SwasthyaGuide"
+   git push origin main
+   ```
+
+2. **Create Render Service**
+   - Go to [render.com](https://render.com)
+   - New Web Service → Connect your repo
+   - Branch: `deployment-ready` or `main`
+   - Build: `pip install -r requirements.txt`
+   - Start: `gunicorn app:app`
+
+3. **Add Environment Variables in Render**
+   ```
+   TWILIO_ACCOUNT_SID=ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   TWILIO_AUTH_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   FLASK_SECRET_KEY=[generated random key]
+   ```
+
+4. **Configure Twilio Webhook**
+   - Twilio Console → WhatsApp Sandbox
+   - Webhook URL: `https://your-app.onrender.com/whatsapp`
+   - Method: POST
+   - Save!
+
+5. **Test It! 🎉**
+   - Send WhatsApp message
+   - Bot should respond immediately
+
+**⚠️ Important:** First deployment takes 2-3 minutes. Free tier sleeps after 15 minutes of inactivity.
 
 ## 🎯 Usage Examples
 
@@ -360,19 +436,21 @@ This project is licensed under the MIT License.
 
 ## 📞 Support & Contact
 
-### 💬 Try the Live Bot
-- **WhatsApp:** [+1 415 523 8886](https://wa.me/14155238886?text=join%20yellow-cheese) ← Click to start chatting!
-- **Activation:** Send `join yellow-cheese`
-- **Available:** 24/7
+### 💬 Live Bot Demo
+- **WhatsApp:** [**+1 415 523 8886**](https://wa.me/14155238886?text=join%20yellow-cheese) 👈 Click to chat!
+- **Activation Code:** `join yellow-cheese`
+- **Available:** 24/7 (may take 30s to wake from sleep)
 
-### 🐛 Report Issues
-- **GitHub Issues**: [Open an issue](https://github.com/anubhavy-05/Prakalp-Swasthya/issues)
-- **Documentation**: See [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)
-- **Repository**: [github.com/anubhavy-05/Prakalp-Swasthya](https://github.com/anubhavy-05/Prakalp-Swasthya)
+### 🐛 Issues & Contributions
+- **Report Bugs:** [GitHub Issues](https://github.com/anubhavy-05/Prakalp-Swasthya/issues)
+- **Contribute:** Fork → Branch → PR
+- **Documentation:** [Full Deployment Guide](DEPLOYMENT_GUIDE.md)
+- **Source Code:** [github.com/anubhavy-05/Prakalp-Swasthya](https://github.com/anubhavy-05/Prakalp-Swasthya)
 
-### 🌐 Live Demo
-- **Web App**: https://prakalp-swasthya.onrender.com
-- **Health Check**: https://prakalp-swasthya.onrender.com/health
+### 🔗 Links
+- **Web Health Check:** `https://[your-app].onrender.com/health`
+- **Twilio Console:** https://console.twilio.com
+- **Render Dashboard:** https://dashboard.render.com
 
 ## 🎉 Acknowledgments
 
@@ -380,30 +458,45 @@ This project is licensed under the MIT License.
 - Inspired by the need for multilingual health information
 - Thanks to Twilio for WhatsApp Business API
 - Thanks to Render for free hosting
+Bot Not Responding on WhatsApp?
 
----
+**📖 Read:** [WHY_NOT_WORKING.md](WHY_NOT_WORKING.md) - Complete troubleshooting guide
 
-**Made with ❤️ for accessible healthcare guidance in India**
+**Quick Checks:**
 
-*"स्वास्थ्य सबका अधिकार है - Health is everyone's right"*
+✅ **Is your app deployed?**
+- Visit: `https://your-app.onrender.com/health`
+- Should return: `{"status": "healthy", ...}`
+- If 404 or error → App not deployed properly
 
----
+✅ **Is Twilio webhook configured?**
+- Twilio Console → WhatsApp Sandbox → Settings
+- Webhook URL should be: `https://your-app.onrender.com/whatsapp`
+- Method: POST
+- If empty → Configure it!
 
-## 📚 Additional Resources
+✅ **Check logs:**
+```bash
+# In Render Dashboard
+Service → Logs → Watch for incoming requests
 
-- [Twilio WhatsApp API Docs](https://www.twilio.com/docs/whatsapp)
-- [Render Deployment Docs](https://render.com/docs)
-- [Flask Documentation](https://flask.palletsprojects.com/)
-
-## 🆘 Troubleshooting
+# Should see:
+"Webhook triggered - Method: POST"
+"Received message: 'Mujhe sir dard...'"
+"Response sent successfully"
+```
 
 ### Common Issues:
 
-**Problem**: Import errors
-```bash
-# Solution
-pip install -r requirements.txt
-```
+| Problem | Solution |
+|---------|----------|
+| **Import errors** | Run: `pip install -r requirements.txt` |
+| **`.env` not loaded** | Ensure `.env` exists and contains valid values |
+| **Webhook 500 error** | Check Render logs for Python errors |
+| **No response from bot** | Verify Twilio webhook URL is correct |
+| **App sleeping** | Free tier sleeps after 15 min - first message wakes it (30s delay) |
+
+**Still stuck?** Open an [issue on GitHub](https://github.com/anubhavy-05/Prakalp-Swasthya/issues
 
 **Problem**: `.env` not loaded
 ```bash
