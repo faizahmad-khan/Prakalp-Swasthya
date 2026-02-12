@@ -20,6 +20,7 @@ werkzeug==3.0.1
 # Image Processing (Required for image analysis feature)
 Pillow==10.2.0
 requests==2.31.0
+numpy>=1.26.0
 
 # Optional: For enhanced features (uncomment as needed)
 
