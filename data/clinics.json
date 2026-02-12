@@ -21,22 +21,38 @@
   ],
   "Lucknow_Indira_Nagar": [
     {
-      "name": "Clinic Name Here",
-      "address": "Complete address with area, Indira Nagar, Lucknow - 226016",
-      "timing": "9:00 AM - 8:00 PM (Mon-Sat)",
+      "name": "Apollo Pharmacy",
+      "address": "Near Indira Nagar Church, Polytechnic Area, Lucknow - 226016",
+      "timing": "8:00 AM - 10:00 PM (All days)",
       "phone": "+91-522-XXXXXXXX",
-      "specialties": ["General Medicine", "Specialty 1", "Specialty 2"],
-      "fees": "₹300-500"
+      "specialties": ["Pharmacy", "Medical Store", "Healthcare Products"],
+      "fees": "Medicine Costs"
+    },
+    {
+      "name": "M A Medical & Surgical",
+      "address": "Near Polytechnic Chauraha, Indira Nagar, Lucknow - 226016",
+      "timing": "9:00 AM - 9:00 PM (All days)",
+      "phone": "+91-522-XXXXXXXX",
+      "specialties": ["Pharmacy", "Surgical Supplies", "Medical Equipment"],
+      "fees": "Medicine Costs"
     }
   ],
   "Lucknow_Aliganj": [
     {
-      "name": "Clinic Name Here",
-      "address": "Complete address with area, Aliganj, Lucknow - 226024",
-      "timing": "9:00 AM - 8:00 PM (Mon-Sat)",
+      "name": "BL Krishna Medical Store",
+      "address": "Atif Vihar, Aashiana, Lucknow - 226012",
+      "timing": "8:30 AM - 9:00 PM (All days)",
       "phone": "+91-522-XXXXXXXX",
-      "specialties": ["General Medicine", "Specialty 1", "Specialty 2"],
-      "fees": "₹300-500"
+      "specialties": ["Pharmacy", "Medical Store", "General Medicines"],
+      "fees": "Medicine Costs"
+    },
+    {
+      "name": "Vikash Medical Store",
+      "address": "Uttardhona, Near Indian Oil Petrol Pump, Faizabad Road, Lucknow - 226028",
+      "timing": "9:00 AM - 9:00 PM (All days)",
+      "phone": "+91-522-XXXXXXXX",
+      "specialties": ["Pharmacy", "Modern Medicines", "Ayurvedic Medicines"],
+      "fees": "Medicine Costs"
     }
   ],
   "Lucknow_Alambagh": [
@@ -51,12 +67,20 @@
   ],
   "Lucknow_Aminabad": [
     {
-      "name": "Clinic Name Here",
-      "address": "Complete address with area, Aminabad, Lucknow - 226018",
-      "timing": "9:00 AM - 8:00 PM (Mon-Sat)",
+      "name": "Rakesh Medical Store",
+      "address": "Chinhat, Faizabad Road, Lucknow - 226028",
+      "timing": "24 Hours (All days)",
       "phone": "+91-522-XXXXXXXX",
-      "specialties": ["General Medicine", "Specialty 1", "Specialty 2"],
-      "fees": "₹300-500"
+      "specialties": ["Pharmacy", "24 Hour Service", "Emergency Medicines"],
+      "fees": "Medicine Costs"
+    },
+    {
+      "name": "Om Medicals",
+      "address": "Near Avadh Bazaar, Chinhat, Lucknow - 226028",
+      "timing": "8:00 AM - 10:00 PM (All days)",
+      "phone": "+91-522-XXXXXXXX",
+      "specialties": ["Pharmacy", "Medical Store", "General Medicines"],
+      "fees": "Medicine Costs"
     }
   ],
   "Lucknow_Mahanagar": [
@@ -81,42 +105,90 @@
   ],
   "Lucknow_Aashiana": [
     {
-      "name": "Clinic Name Here",
-      "address": "Complete address with area, Aashiana, Lucknow - 226012",
-      "timing": "9:00 AM - 8:00 PM (Mon-Sat)",
+      "name": "BL Krishna Medical Store",
+      "address": "Atif Vihar, Aashiana, Lucknow - 226012",
+      "timing": "8:30 AM - 9:00 PM (All days)",
       "phone": "+91-522-XXXXXXXX",
-      "specialties": ["General Medicine", "Specialty 1", "Specialty 2"],
-      "fees": "₹300-500"
+      "specialties": ["Pharmacy", "Medical Store", "General Medicines"],
+      "fees": "Medicine Costs"
+    },
+    {
+      "name": "Vikash Medical Store",
+      "address": "Uttardhona, Near Indian Oil Petrol Pump, Faizabad Road, Lucknow - 226028",
+      "timing": "9:00 AM - 9:00 PM (All days)",
+      "phone": "+91-522-XXXXXXXX",
+      "specialties": ["Pharmacy", "Modern Medicines", "Ayurvedic Medicines"],
+      "fees": "Medicine Costs"
     }
   ],
   "Lucknow_Chinhat": [
     {
-      "name": "Clinic Name Here",
-      "address": "Complete address with area, Chinhat, Lucknow - 226028",
-      "timing": "9:00 AM - 8:00 PM (Mon-Sat)",
+      "name": "Rakesh Medical Store",
+      "address": "Chinhat, Faizabad Road, Lucknow - 226028",
+      "timing": "24 Hours (All days)",
       "phone": "+91-522-XXXXXXXX",
-      "specialties": ["General Medicine", "Specialty 1", "Specialty 2"],
-      "fees": "₹300-500"
+      "specialties": ["Pharmacy", "24 Hour Service", "Emergency Medicines"],
+      "fees": "Medicine Costs"
+    },
+    {
+      "name": "Om Medicals",
+      "address": "Near Avadh Bazaar, Chinhat, Lucknow - 226028",
+      "timing": "8:00 AM - 10:00 PM (All days)",
+      "phone": "+91-522-XXXXXXXX",
+      "specialties": ["Pharmacy", "Medical Store", "General Medicines"],
+      "fees": "Medicine Costs"
     }
   ],
   "Lucknow_BBD_University": [
     {
-      "name": "Clinic Name Here",
-      "address": "Complete address with area, BBD University / Faizabad Road, Lucknow - 226028",
-      "timing": "9:00 AM - 8:00 PM (Mon-Sat)",
+      "name": "Pradhan Mantri Bhartiya Jan Aushadhi Kendra",
+      "address": "Opposite BBD University, Faizabad Road, Lucknow - 226028",
+      "timing": "9:00 AM - 7:00 PM (Mon-Sat)",
       "phone": "+91-522-XXXXXXXX",
-      "specialties": ["General Medicine", "Specialty 1", "Specialty 2"],
-      "fees": "₹300-500"
+      "specialties": ["Generic Medicines", "Low Cost Pharmacy", "Quality Medicines"],
+      "fees": "Lower Prices"
+    },
+    {
+      "name": "S. Sudha Pharmacy",
+      "address": "Opposite BBD University, Avadh Bazaar, Lucknow - 226028",
+      "timing": "8:00 AM - 9:00 PM (All days)",
+      "phone": "+91-522-XXXXXXXX",
+      "specialties": ["Pharmacy", "Medical Store", "General Medicines"],
+      "fees": "Medicine Costs"
+    },
+    {
+      "name": "Usha Pharmacy",
+      "address": "Silver Line Apartment, BBD Avadh Bazaar, Lucknow - 226028",
+      "timing": "8:00 AM - 9:00 PM (All days)",
+      "phone": "+91-522-XXXXXXXX",
+      "specialties": ["Pharmacy", "Medical Store", "General Medicines"],
+      "fees": "Medicine Costs"
+    },
+    {
+      "name": "Verma Medical Store",
+      "address": "Silverline Road, Near BBD University, Lucknow - 226028",
+      "timing": "9:00 AM - 9:00 PM (All days)",
+      "phone": "+91-522-XXXXXXXX",
+      "specialties": ["Pharmacy", "Medical Store", "General Medicines"],
+      "fees": "Medicine Costs"
     }
   ],
   "Lucknow_Vikas_Nagar": [
     {
-      "name": "Clinic Name Here",
-      "address": "Complete address with area, Vikas Nagar, Lucknow - 226022",
-      "timing": "9:00 AM - 8:00 PM (Mon-Sat)",
+      "name": "Apollo Pharmacy",
+      "address": "Near Indira Nagar Church, Polytechnic Area, Lucknow - 226016",
+      "timing": "8:00 AM - 10:00 PM (All days)",
       "phone": "+91-522-XXXXXXXX",
-      "specialties": ["General Medicine", "Specialty 1", "Specialty 2"],
-      "fees": "₹300-500"
+      "specialties": ["Pharmacy", "Medical Store", "Healthcare Products"],
+      "fees": "Medicine Costs"
+    },
+    {
+      "name": "M A Medical & Surgical",
+      "address": "Near Polytechnic Chauraha, Indira Nagar, Lucknow - 226016",
+      "timing": "9:00 AM - 9:00 PM (All days)",
+      "phone": "+91-522-XXXXXXXX",
+      "specialties": ["Pharmacy", "Surgical Supplies", "Medical Equipment"],
+      "fees": "Medicine Costs"
     }
   ],
   "Lucknow_Nirala_Nagar": [
@@ -127,6 +199,16 @@
       "phone": "+91-522-XXXXXXXX",
       "specialties": ["General Medicine", "Specialty 1", "Specialty 2"],
       "fees": "₹300-500"
+    }
+  ],
+  "Lucknow_Tiwariganj": [
+    {
+      "name": "Netmeds Pharmacy",
+      "address": "Tiwari Chauraha, Near Reliance Smart Point, Tiwariganj, Lucknow - 226020",
+      "timing": "9:00 AM - 9:00 PM (All days)",
+      "phone": "+91-522-XXXXXXXX",
+      "specialties": ["Pharmacy", "Online Pharmacy", "Healthcare Products"],
+      "fees": "Medicine Costs"
     }
   ],
   "Lucknow_Daliganj": [
