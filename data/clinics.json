@@ -1,210 +1,82 @@
 {
-  "Mumbai_Andheri": [
+  "Lucknow_Gomti_Nagar": [
     {
-      "name": "Dr. Sharma Multispeciality Clinic",
-      "address": "Shop 5, Veera Desai Road, Andheri West, Mumbai - 400053",
-      "timing": "10:00 AM - 8:00 PM (Mon-Sat)",
-      "phone": "+91-22-26730000",
-      "specialties": ["General Medicine", "Pediatrics"],
-      "fees": "₹300-500"
-    },
-    {
-      "name": "HealthFirst Medical Center",
-      "address": "Link Road, Near Metro Station, Andheri East, Mumbai - 400069",
-      "timing": "9:00 AM - 9:00 PM (All days)",
-      "phone": "+91-22-28210000",
-      "specialties": ["General Medicine", "Women's Health"],
-      "fees": "₹400-600"
-    },
-    {
-      "name": "City Care Clinic",
-      "address": "JB Nagar, Andheri East, Mumbai - 400059",
-      "timing": "8:00 AM - 10:00 PM (All days)",
-      "phone": "+91-22-26840000",
-      "specialties": ["General Medicine", "Emergency Care"],
-      "fees": "₹250-400"
-    }
-  ],
-  "Delhi_Karol_Bagh": [
-    {
-      "name": "Dr. Gupta Family Clinic",
-      "address": "Arya Samaj Road, Karol Bagh, New Delhi - 110005",
-      "timing": "9:00 AM - 7:00 PM (Mon-Sat)",
-      "phone": "+91-11-25750000",
-      "specialties": ["General Medicine", "Diabetology"],
-      "fees": "₹300-500"
-    },
-    {
-      "name": "Wellness Medical Center",
-      "address": "Ajmal Khan Road, Karol Bagh, New Delhi - 110005",
-      "timing": "10:00 AM - 8:00 PM (All days)",
-      "phone": "+91-11-25820000",
-      "specialties": ["General Medicine", "Cardiology"],
-      "fees": "₹500-800"
-    },
-    {
-      "name": "Care Plus Clinic",
-      "address": "Bank Street, Karol Bagh, New Delhi - 110005",
-      "timing": "8:00 AM - 9:00 PM (Mon-Sat)",
-      "phone": "+91-11-25730000",
-      "specialties": ["General Medicine", "Orthopedics"],
-      "fees": "₹350-550"
-    }
-  ],
-  "Bangalore_Koramangala": [
-    {
-      "name": "Dr. Reddy's Health Clinic",
-      "address": "80 Feet Road, 4th Block, Koramangala, Bangalore - 560034",
+      "name": "Clinic Name Here",
+      "address": "Complete address with area, Gomti Nagar, Lucknow - 226010",
       "timing": "9:00 AM - 8:00 PM (Mon-Sat)",
-      "phone": "+91-80-41280000",
-      "specialties": ["General Medicine", "Dermatology"],
-      "fees": "₹400-600"
-    },
-    {
-      "name": "LifeCare Medical Center",
-      "address": "5th Block, Koramangala, Bangalore - 560095",
-      "timing": "8:00 AM - 10:00 PM (All days)",
-      "phone": "+91-80-25530000",
-      "specialties": ["General Medicine", "Women's Health", "Pediatrics"],
-      "fees": "₹500-700"
-    },
-    {
-      "name": "Wellness Hub Clinic",
-      "address": "6th Block, Koramangala, Bangalore - 560034",
-      "timing": "10:00 AM - 9:00 PM (Mon-Sat)",
-      "phone": "+91-80-25680000",
-      "specialties": ["General Medicine", "ENT"],
+      "phone": "+91-522-XXXXXXXX",
+      "specialties": ["General Medicine", "Specialty 1", "Specialty 2"],
       "fees": "₹300-500"
     }
   ],
-  "Pune_Kothrud": [
+  "Lucknow_Hazratganj": [
     {
-      "name": "Dr. Patil Clinic",
-      "address": "Paud Road, Kothrud, Pune - 411038",
-      "timing": "9:00 AM - 7:00 PM (Mon-Sat)",
-      "phone": "+91-20-25430000",
-      "specialties": ["General Medicine", "Diabetology"],
-      "fees": "₹300-450"
-    },
-    {
-      "name": "Shree Medical Center",
-      "address": "Karve Road, Kothrud, Pune - 411029",
-      "timing": "8:00 AM - 9:00 PM (All days)",
-      "phone": "+91-20-25460000",
-      "specialties": ["General Medicine", "Pediatrics", "Women's Health"],
-      "fees": "₹400-600"
-    },
-    {
-      "name": "Apollo Clinic Kothrud",
-      "address": "Near Deccan Gymkhana, Kothrud, Pune - 411038",
-      "timing": "10:00 AM - 8:00 PM (Mon-Sat)",
-      "phone": "+91-20-25480000",
-      "specialties": ["General Medicine", "Cardiology", "Diagnostics"],
-      "fees": "₹500-800"
-    }
-  ],
-  "Hyderabad_Madhapur": [
-    {
-      "name": "Dr. Kumar Health Clinic",
-      "address": "HITEC City Road, Madhapur, Hyderabad - 500081",
+      "name": "Clinic Name Here",
+      "address": "Complete address with area, Hazratganj, Lucknow - 226001",
       "timing": "9:00 AM - 8:00 PM (Mon-Sat)",
-      "phone": "+91-40-44280000",
-      "specialties": ["General Medicine", "Gastroenterology"],
-      "fees": "₹350-550"
-    },
-    {
-      "name": "MedPlus Clinic",
-      "address": "Cyber Towers, Madhapur, Hyderabad - 500081",
-      "timing": "8:00 AM - 10:00 PM (All days)",
-      "phone": "+91-40-44320000",
-      "specialties": ["General Medicine", "Emergency Care"],
-      "fees": "₹400-600"
-    },
-    {
-      "name": "Care Hospital Clinic",
-      "address": "Road No. 36, Jubilee Hills, Hyderabad - 500033",
-      "timing": "10:00 AM - 9:00 PM (All days)",
-      "phone": "+91-40-44250000",
-      "specialties": ["General Medicine", "Women's Health", "Pediatrics"],
-      "fees": "₹500-750"
-    }
-  ],
-  "Chennai_Velachery": [
-    {
-      "name": "Dr. Subramaniam Clinic",
-      "address": "Velachery Main Road, Chennai - 600042",
-      "timing": "9:00 AM - 7:00 PM (Mon-Sat)",
-      "phone": "+91-44-42280000",
-      "specialties": ["General Medicine", "Diabetology"],
+      "phone": "+91-522-XXXXXXXX",
+      "specialties": ["General Medicine", "Specialty 1", "Specialty 2"],
       "fees": "₹300-500"
-    },
-    {
-      "name": "Apollo Clinic Velachery",
-      "address": "100 Feet Road, Velachery, Chennai - 600042",
-      "timing": "8:00 AM - 10:00 PM (All days)",
-      "phone": "+91-44-42320000",
-      "specialties": ["General Medicine", "Cardiology", "Pediatrics"],
-      "fees": "₹500-800"
-    },
-    {
-      "name": "Sunshine Medical Center",
-      "address": "Vijayanagar, Velachery, Chennai - 600042",
-      "timing": "10:00 AM - 8:00 PM (Mon-Sat)",
-      "phone": "+91-44-42350000",
-      "specialties": ["General Medicine", "Women's Health"],
-      "fees": "₹350-550"
     }
   ],
-  "Kolkata_Salt_Lake": [
+  "Lucknow_Indira_Nagar": [
     {
-      "name": "Dr. Chatterjee Clinic",
-      "address": "Sector 1, Salt Lake, Kolkata - 700064",
-      "timing": "9:00 AM - 7:00 PM (Mon-Sat)",
-      "phone": "+91-33-23280000",
-      "specialties": ["General Medicine", "Respiratory Medicine"],
+      "name": "Clinic Name Here",
+      "address": "Complete address with area, Indira Nagar, Lucknow - 226016",
+      "timing": "9:00 AM - 8:00 PM (Mon-Sat)",
+      "phone": "+91-522-XXXXXXXX",
+      "specialties": ["General Medicine", "Specialty 1", "Specialty 2"],
       "fees": "₹300-500"
-    },
-    {
-      "name": "Healthworld Clinic",
-      "address": "Sector 5, Salt Lake, Kolkata - 700091",
-      "timing": "8:00 AM - 9:00 PM (All days)",
-      "phone": "+91-33-23320000",
-      "specialties": ["General Medicine", "Pediatrics"],
-      "fees": "₹400-600"
-    },
-    {
-      "name": "Care & Cure Medical Center",
-      "address": "Near City Centre, Salt Lake, Kolkata - 700064",
-      "timing": "10:00 AM - 8:00 PM (Mon-Sat)",
-      "phone": "+91-33-23350000",
-      "specialties": ["General Medicine", "Women's Health", "Diabetology"],
-      "fees": "₹350-550"
     }
   ],
-  "Ahmedabad_Satellite": [
+  "Lucknow_Aliganj": [
     {
-      "name": "Dr. Patel Family Clinic",
-      "address": "100 Feet Road, Satellite, Ahmedabad - 380015",
-      "timing": "9:00 AM - 7:00 PM (Mon-Sat)",
-      "phone": "+91-79-40280000",
-      "specialties": ["General Medicine", "Pediatrics"],
-      "fees": "₹300-450"
-    },
+      "name": "Clinic Name Here",
+      "address": "Complete address with area, Aliganj, Lucknow - 226024",
+      "timing": "9:00 AM - 8:00 PM (Mon-Sat)",
+      "phone": "+91-522-XXXXXXXX",
+      "specialties": ["General Medicine", "Specialty 1", "Specialty 2"],
+      "fees": "₹300-500"
+    }
+  ],
+  "Lucknow_Alambagh": [
     {
-      "name": "Apollo Clinic Satellite",
-      "address": "Jodhpur Cross Road, Satellite, Ahmedabad - 380015",
-      "timing": "8:00 AM - 10:00 PM (All days)",
-      "phone": "+91-79-40320000",
-      "specialties": ["General Medicine", "Cardiology", "Emergency Care"],
-      "fees": "₹500-800"
-    },
+      "name": "Clinic Name Here",
+      "address": "Complete address with area, Alambagh, Lucknow - 226005",
+      "timing": "9:00 AM - 8:00 PM (Mon-Sat)",
+      "phone": "+91-522-XXXXXXXX",
+      "specialties": ["General Medicine", "Specialty 1", "Specialty 2"],
+      "fees": "₹300-500"
+    }
+  ],
+  "Lucknow_Aminabad": [
     {
-      "name": "Medilink Healthcare",
-      "address": "Sindhu Bhavan Road, Satellite, Ahmedabad - 380015",
-      "timing": "10:00 AM - 8:00 PM (Mon-Sat)",
-      "phone": "+91-79-40350000",
-      "specialties": ["General Medicine", "Women's Health"],
-      "fees": "₹350-550"
+      "name": "Clinic Name Here",
+      "address": "Complete address with area, Aminabad, Lucknow - 226018",
+      "timing": "9:00 AM - 8:00 PM (Mon-Sat)",
+      "phone": "+91-522-XXXXXXXX",
+      "specialties": ["General Medicine", "Specialty 1", "Specialty 2"],
+      "fees": "₹300-500"
+    }
+  ],
+  "Lucknow_Mahanagar": [
+    {
+      "name": "Clinic Name Here",
+      "address": "Complete address with area, Mahanagar, Lucknow - 226006",
+      "timing": "9:00 AM - 8:00 PM (Mon-Sat)",
+      "phone": "+91-522-XXXXXXXX",
+      "specialties": ["General Medicine", "Specialty 1", "Specialty 2"],
+      "fees": "₹300-500"
+    }
+  ],
+  "Lucknow_Rajajipuram": [
+    {
+      "name": "Clinic Name Here",
+      "address": "Complete address with area, Rajajipuram, Lucknow - 226017",
+      "timing": "9:00 AM - 8:00 PM (Mon-Sat)",
+      "phone": "+91-522-XXXXXXXX",
+      "specialties": ["General Medicine", "Specialty 1", "Specialty 2"],
+      "fees": "₹300-500"
     }
   ]
 }
