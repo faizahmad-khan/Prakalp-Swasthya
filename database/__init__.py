@@ -4,7 +4,7 @@ Database package initialization
 """
 
 from .models import Base, Clinic, Conversation, Message, Analytics, UserProfile
-from .connection import DatabaseManager, get_db_session
+from .connection import DatabaseManager, get_db_session, init_db, get_db_manager, db_session
 
 __all__ = [
     'Base',
@@ -14,5 +14,8 @@ __all__ = [
     'Analytics',
     'UserProfile',
     'DatabaseManager',
-    'get_db_session'
+    'get_db_session',
+    'init_db',
+    'get_db_manager',
+    'db_session'
 ]
