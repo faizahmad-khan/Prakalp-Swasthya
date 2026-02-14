@@ -124,7 +124,7 @@ class Analytics(Base):
     metric_value = Column(Integer, default=0)
     language = Column(String(20), nullable=True)
     location = Column(String(100), nullable=True)
-    metadata = Column(JSON, nullable=True)
+    extra_data = Column(JSON, nullable=True)  # Renamed from 'metadata' to avoid SQLAlchemy conflict
     
     def __repr__(self):
         return f"<Analytics(id={self.id}, type='{self.metric_type}', value={self.metric_value})>"
@@ -139,7 +139,7 @@ class Analytics(Base):
             'metric_value': self.metric_value,
             'language': self.language,
             'location': self.location,
-            'metadata': self.metadata
+            'extra_data': self.extra_data
         }
 
 
