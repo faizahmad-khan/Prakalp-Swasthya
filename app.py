@@ -165,8 +165,10 @@ def whatsapp_webhook():
             
             # Download and process image
             try:
-                # Download image from Twilio's media URL
-                media_response = requests.get(media_url, timeout=10)
+                # Download image from Twilio's media URL with authentication
+                # Twilio requires HTTP Basic Auth to access media files
+                auth = (Config.TWILIO_ACCOUNT_SID, Config.TWILIO_AUTH_TOKEN)
+                media_response = requests.get(media_url, auth=auth, timeout=10)
                 media_response.raise_for_status()
                 image_data = media_response.content
                 
