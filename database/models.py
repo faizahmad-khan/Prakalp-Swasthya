@@ -124,7 +124,11 @@ class Analytics(Base):
     metric_value = Column(Integer, default=0)
     language = Column(String(20), nullable=True)
     location = Column(String(100), nullable=True)
+<<<<<<< HEAD
     extra_data = Column(JSON, nullable=True)  # Renamed from 'metadata' to avoid SQLAlchemy conflict
+=======
+    extra_data = Column(JSON, nullable=True)  # Renamed from 'metadata' (reserved in SQLAlchemy)
+>>>>>>> refs/remotes/origin/main
     
     def __repr__(self):
         return f"<Analytics(id={self.id}, type='{self.metric_type}', value={self.metric_value})>"

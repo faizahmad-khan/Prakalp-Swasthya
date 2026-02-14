@@ -8,9 +8,16 @@ Uses PostgreSQL database
 import logging
 from typing import Optional, List
 from sqlalchemy import or_
-from database import get_db_manager, Clinic
 
 logger = logging.getLogger(__name__)
+
+# Database imports are optional - moved inside functions to handle gracefully
+try:
+    from database import get_db_manager, Clinic
+    DB_AVAILABLE = True
+except ImportError:
+    DB_AVAILABLE = False
+    logger.warning("Database module not available - clinic search will use fallback")
 
 
 def check_for_clinic_request(text: str) -> bool:
@@ -78,6 +85,10 @@ def search_clinics_in_db(location: str, limit: int = 5) -> List[Clinic]:
     Returns:
         List of Clinic objects
     """
+    if not DB_AVAILABLE:
+        logger.warning("Database not available for clinic search")
+        return []
+    
     try:
         db_manager = get_db_manager()
         

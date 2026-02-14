@@ -39,11 +39,11 @@ SwasthyaGuide has been upgraded with enterprise-grade PostgreSQL database:
 
 1. **Open WhatsApp** on your phone 📲
 
-2. **Message this number:** [**+1 415 523 8886**](https://wa.me/14155238886?text=join%20yellow-cheese)
+2. **Message this number:** [**+1 415 523 8886**](https://wa.me/14155238886?text=join%20dinner-brief)
 
 3. **Send activation code:**
    ```
-   join yellow-cheese
+   join dinner-brief
    ```
 
 4. **Start chatting!** Try:
@@ -65,8 +65,8 @@ You: chest pain
 Bot: [Sends emergency alert with 108 number]
 ```
 
-**📲 WhatsApp Number:** [+1 415 523 8886](https://wa.me/14155238886?text=join%20yellow-cheese)  
-**🔑 Activation Code:** `join yellow-cheese`
+**📲 WhatsApp Number:** [+1 415 523 8886](https://wa.me/14155238886?text=join%20dinner-brief)  
+**🔑 Activation Code:** `join dinner-brief`
 
 ---
 
@@ -196,7 +196,7 @@ Prakalp-Swasthya/
 ## 🚀 Quick Start Guide
 
 ### For Users: Try the Live Bot
-👉 **[Click here to chat on WhatsApp](https://wa.me/14155238886?text=join%20yellow-cheese)** 👈
+👉 **[Click here to chat on WhatsApp](https://wa.me/14155238886?text=join%20dinner-brief)** 👈
 
 ### For Developers: Deploy Your Own
 
@@ -359,7 +359,7 @@ Prakalp-Swasthya/
 
 **Try it yourself!**
 1. WhatsApp: `+1 415 523 8886`
-2. Send: `join yellow-cheese`
+2. Send: `join dinner-brief`
 3. Start asking health questions!
 
 ---
@@ -449,8 +449,8 @@ curl http://localhost:5000/health
 ### WhatsApp Testing
 **Try the live bot right now!**
 
-1. **Add to WhatsApp:** [+1 415 523 8886](https://wa.me/14155238886?text=join%20yellow-cheese)
-2. **Activate:** Send `join yellow-cheese`
+1. **Add to WhatsApp:** [+1 415 523 8886](https://wa.me/14155238886?text=join%20dinner-brief)
+2. **Activate:** Send `join dinner-brief`
 3. **Start chatting:** Try `Mujhe sir dard ho raha hai`
 
 Or deploy your own:
@@ -514,8 +514,8 @@ This project is licensed under the MIT License.
 ## 📞 Support & Contact
 
 ### 💬 Live Bot Demo
-- **WhatsApp:** [**+1 415 523 8886**](https://wa.me/14155238886?text=join%20yellow-cheese) 👈 Click to chat!
-- **Activation Code:** `join yellow-cheese`
+- **WhatsApp:** [**+1 415 523 8886**](https://wa.me/14155238886?text=join%20dinner-brief) 👈 Click to chat!
+- **Activation Code:** `join dinner-brief`
 - **Available:** 24/7 (may take 30s to wake from sleep)
 
 ### 🐛 Issues & Contributions
