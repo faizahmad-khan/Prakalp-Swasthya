@@ -9,7 +9,6 @@ import logging
 from datetime import datetime
 from flask import Flask, request, jsonify
 from twilio.twiml.messaging_response import MessagingResponse
-from twilio.request_validator import RequestValidator
 from src.chatbot import SwasthyaGuide
 from src.config_loader import Config
 import requests
@@ -45,9 +44,49 @@ except Exception as e:
     logger.error(f"Database initialization failed: {e}")
     logger.warning("Application will continue without database logging")
 
-# Initialize SwasthyaGuide bot instance globally
-bot = SwasthyaGuide()
-logger.info("SwasthyaGuide bot initialized")
+# Session management - store bot instances per user session
+user_sessions = {}
+session_timestamps = {}
+SESSION_TIMEOUT = 1800  # 30 minutes in seconds
+
+logger.info("SwasthyaGuide session manager initialized")
+
+
+def cleanup_old_sessions():
+    """Remove sessions that haven't been used in SESSION_TIMEOUT seconds"""
+    current_time = datetime.now()
+    sessions_to_remove = []
+    
+    for session_id, timestamp in session_timestamps.items():
+        if (current_time - timestamp).total_seconds() > SESSION_TIMEOUT:
+            sessions_to_remove.append(session_id)
+    
+    for session_id in sessions_to_remove:
+        logger.info(f"Cleaning up inactive session: {session_id[:15]}...")
+        user_sessions.pop(session_id, None)
+        session_timestamps.pop(session_id, None)
+    
+    if sessions_to_remove:
+        logger.info(f"Cleaned up {len(sessions_to_remove)} inactive sessions")
+
+
+def get_or_create_session(sender: str, user_phone: str) -> SwasthyaGuide:
+    """Get existing session or create new one, with cleanup of old sessions"""
+    # Clean up old sessions periodically
+    if len(user_sessions) > 50:  # Only cleanup if we have many sessions
+        cleanup_old_sessions()
+    
+    # Update or create session
+    if sender not in user_sessions:
+        logger.info(f"Creating new session for {sender[:15]}...")
+        user_sessions[sender] = SwasthyaGuide(session_id=sender, user_phone=user_phone)
+    else:
+        logger.info(f"Reusing existing session for {sender[:15]}...")
+    
+    # Update timestamp
+    session_timestamps[sender] = datetime.now()
+    
+    return user_sessions[sender]
 
 
 @app.route('/')
@@ -110,8 +149,8 @@ def whatsapp_webhook():
         # Extract phone number (remove whatsapp: prefix)
         user_phone = sender.replace('whatsapp:', '') if sender.startswith('whatsapp:') else sender
         
-        # Create session-specific bot instance
-        session_bot = SwasthyaGuide(session_id=sender, user_phone=user_phone)
+        # Get or create session-specific bot instance (maintain conversation context)
+        session_bot = get_or_create_session(sender, user_phone)
         
         # Log incoming message (remove PII in production)
         logger.info(f"Received message: '{incoming_msg}' from {sender[:15]}... (Media: {num_media})")
