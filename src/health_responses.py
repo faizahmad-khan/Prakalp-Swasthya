@@ -252,6 +252,31 @@ This is not a medical diagnosis. If the condition seems serious, please consult 
 def handle_fever(language: str) -> str:
     """Provide guidance for fever"""
     responses = {
+        'hinglish': """
+1️⃣ **Bukhar ke bare mein:**
+Bukhar ek lakshan hai jo batata hai ki aapka sharir kisi infection se lad raha hai. Normal temperature 98.6°F (37°C) hota hai.
+
+2️⃣ **Ghar par aap ye try kar sakte hain:**
+• Zyada se zyada aaram karein
+• Pani, juice, ORS, coconut water piyein
+• Halka aur nutritious khana khayein (dal, khichdi, soup)
+• Loose aur comfortable kapde pehenein
+• Maatha par thanda pani ka kapda rakhein
+• Kamre ka temperature comfortable rakhein
+
+3️⃣ **Doctor ko kab dikhaayein:**
+⚠️ Bukhar 102°F se zyada ho
+⚠️ 3 din se zyada ho
+⚠️ Bahut kamzori, chakkar, ya body pain ho
+⚠️ Chhote bachche ya buzurg vyakti ho
+⚠️ Saans lene mein dikkat, rash, ya ulti ho
+
+4️⃣ **Kya aapko najdeeki clinic ki zaroorat hai?**
+Apna area bataayein, main clinic suggest kar dunga/dungi.
+
+5️⃣ **Disclaimer:**
+Yeh medical diagnosis nahi hai. Agar condition serious lage toh immediately doctor ko dikhaye.
+""",
         'hindi': """
 1️⃣ **Bukhar ke bare mein:**
 Bukhar ek lakshan hai jo batata hai ki aapka sharir kisi infection se lad raha hai. Normal temperature 98.6°F (37°C) hota hai.
@@ -304,12 +329,39 @@ This is not a medical diagnosis. If the condition seems serious, please consult 
 """
     }
     
-    return responses.get(language, responses['hindi'])
+    return responses.get(language, responses['hinglish'])
 
 
 def handle_stomach_pain(language: str) -> str:
     """Provide guidance for stomach pain"""
     responses = {
+        'hinglish': """
+1️⃣ **Pet dard ke common karan:**
+Pet dard kai reasons se ho sakta hai - gas, acidity, indigestion, khane ki galti, constipation, ya infection.
+
+2️⃣ **Ghar par aap ye try kar sakte hain:**
+• Halka garam pani piyein
+• Oily aur spicy khana avoid karein
+• Chota meals, thodi-thodi der mein khayein
+• Ajwain ya jeera pani piyein
+• Light walk karein (heavy exercise nahi)
+• Pet par halke haath se massage karein
+• Proper neend lein
+
+3️⃣ **Doctor ko kab dikhaayein:**
+⚠️ Dard bahut tez ho ya 6-8 ghante se zyada ho
+⚠️ Baar baar ulti ho rahi ho
+⚠️ Pet bahut sakht ho ya chhune par dard ho
+⚠️ Bukhar, khoon, ya kaale dast ho
+⚠️ Pregnancy mein ho
+⚠️ Dard badta ja raha ho
+
+4️⃣ **Kya aapko najdeeki clinic ki zaroorat hai?**
+Apna location share karein.
+
+5️⃣ **Disclaimer:**
+Yeh medical diagnosis nahi hai. Agar condition serious lage toh immediately doctor ko dikhaye.
+""",
         'hindi': """
 1️⃣ **Pet dard ke samanya karan:**
 Pet dard kai karan se ho sakta hai - gas, acidity, indigestion, khane ki galti, constipation, ya infection.
@@ -366,12 +418,31 @@ This is not a medical diagnosis. If the condition seems serious, please consult 
 """
     }
     
-    return responses.get(language, responses['hindi'])
+    return responses.get(language, responses['hinglish'])
 
 
 def get_general_symptom_advice(symptoms: List[str], language: str) -> str:
     """Provide general advice for multiple symptoms"""
     responses = {
+        'hinglish': """
+Aapke symptoms sun kar lagta hai aapko proper medical check-up ki zaroorat hai.
+
+**Abhi kya karein:**
+• Aaram karein aur zyada exertion avoid karein
+• Pani zyada piyein
+• Halka aur nutritious khana khayein
+• Apne symptoms ko note karein
+
+**Doctor ko zaroor dikhaayein agar:**
+• Symptoms 2-3 din se zyada rahein
+• Condition bigad rahi ho
+• Daily activities karne mein dikkat ho
+
+Kya main aapke liye najdeeki clinic dhoondh doon? Apna area, city, ya pincode bataayein.
+
+**Disclaimer:**
+Yeh medical diagnosis nahi hai. Agar condition serious lage toh immediately doctor ko dikhaye.
+""",
         'hindi': """
 Aapke symptoms sun kar lagta hai aapko proper medical check-up ki zaroorat hai.
 
@@ -412,7 +483,7 @@ This is not a medical diagnosis. If the condition seems serious, please consult 
 """
     }
     
-    return responses.get(language, responses['hindi'])
+    return responses.get(language, responses['hinglish'])
 
 
 def get_general_health_tips(language: str) -> str:
