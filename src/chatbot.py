@@ -279,29 +279,43 @@ class SwasthyaGuide:
         Process image message with optional caption
         Returns formatted response with image analysis
         """
-        # Detect language from caption if provided
-        language = detect_language(caption) if caption else 'hindi'
-        
-        self.user_context['language'] = language
-        
-        # Analyze the image
-        result = self.image_analyzer.analyze_skin_condition(image_data, language)
-        
-        if not result['success']:
-            # Return error message
-            error_responses = {
-                'hindi': f"❌ छवि त्रुटि: {result['error']}\n\nकृपया:\n• एक स्पष्ट फोटो भेजें\n• अच्छी रोशनी में फोटो लें\n• 10MB से छोटी छवि भेजें",
-                'english': f"❌ Image Error: {result['error']}\n\nPlease:\n• Send a clear photo\n• Take photo in good lighting\n• Send image smaller than 10MB"
-            }
-            response = error_responses.get(language, error_responses['english'])
-            self.log_conversation(caption or "[Image]", response, 'image_analysis', 'image')
-            return response
-        
-        # Format successful analysis response
-        analysis = result['analysis']
-        recommendations = '\n'.join(analysis['recommendations'])
-        
-        response = f"""
+        try:
+            # Validate image_data
+            if not image_data or len(image_data) == 0:
+                logger.error("Empty image data received")
+                return "❌ छवि डेटा प्राप्त नहीं हुआ। / No image data received. Please try again."
+            
+            logger.info(f"Processing image: {len(image_data)} bytes, type: {content_type}")
+            
+            # Detect language from caption if provided
+            language = detect_language(caption) if caption else 'hindi'
+            
+            self.user_context['language'] = language
+            logger.info(f"Detected language: {language}")
+            
+            # Analyze the image
+            logger.info("Starting image analysis...")
+            result = self.image_analyzer.analyze_skin_condition(image_data, language)
+            logger.info(f"Analysis completed, success: {result['success']}")
+            
+            if not result['success']:
+                # Return error message
+                logger.warning(f"Image analysis failed: {result['error']}")
+                error_responses = {
+                    'hindi': f"❌ छवि त्रुटि: {result['error']}\n\nकृपया:\n• एक स्पष्ट फोटो भेजें\n• अच्छी रोशनी में फोटो लें\n• 10MB से छोटी छवि भेजें",
+                    'hinglish': f"❌ Image error: {result['error']}\n\nKripya:\n• Clear photo bhejein\n• Achhi lighting mein photo lein\n• 10MB se chhoti image bhejein",
+                    'english': f"❌ Image Error: {result['error']}\n\nPlease:\n• Send a clear photo\n• Take photo in good lighting\n• Send image smaller than 10MB"
+                }
+                response = error_responses.get(language, error_responses['hinglish'])
+                self.log_conversation(caption or "[Image]", response, 'image_analysis', 'image')
+                return response
+            
+            # Format successful analysis response
+            logger.info("Formatting analysis response...")
+            analysis = result['analysis']
+            recommendations = '\n'.join(analysis['recommendations'])
+            
+            response = f"""
 ✅ Image analysis complete!
 
 {recommendations}
@@ -310,18 +324,25 @@ class SwasthyaGuide:
 
 💬 Kuch aur puchhna chahenge? / Any other questions?
 """
-        
-        # Log conversation with image analysis
-        self.log_conversation(
-            caption or "[Image]", 
-            response, 
-            'image_analysis', 
-            'image',
-            image_analysis=result
-        )
-        self.update_user_profile()
-        
-        return response.strip()
+            
+            # Log conversation with image analysis
+            self.log_conversation(
+                caption or "[Image]", 
+                response, 
+                'image_analysis', 
+                'image',
+                image_analysis=result
+            )
+            self.update_user_profile()
+            
+            logger.info("Image processing completed successfully")
+            return response.strip()
+            
+        except Exception as e:
+            # Catch any unexpected errors
+            logger.error(f"Unexpected error in process_image_message: {str(e)}", exc_info=True)
+            error_msg = f"❌ अप्रत्याशित त्रुटि: {type(e).__name__} / Unexpected error: {type(e).__name__}\n\nकृपया पुनः प्रयास करें। / Please try again."
+            return error_msg
     
     def run_cli(self):
         """Run the chatbot in command-line interface mode"""
