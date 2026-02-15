@@ -165,25 +165,52 @@ def whatsapp_webhook():
             
             # Download and process image
             try:
+                # Validate media URL exists
+                if not media_url:
+                    raise ValueError("Media URL not provided by Twilio")
+                
+                logger.info("Downloading image from Twilio...")
+                
                 # Download image from Twilio's media URL with authentication
                 # Twilio requires HTTP Basic Auth to access media files
                 auth = (Config.TWILIO_ACCOUNT_SID, Config.TWILIO_AUTH_TOKEN)
-                media_response = requests.get(media_url, auth=auth, timeout=10)
+                media_response = requests.get(media_url, auth=auth, timeout=15)
                 media_response.raise_for_status()
                 image_data = media_response.content
                 
+                logger.info(f"Image downloaded successfully: {len(image_data)} bytes, Type: {media_type}")
+                
+                # Validate image data
+                if len(image_data) < 100:
+                    raise ValueError(f"Downloaded image too small: {len(image_data)} bytes")
+                
                 # Process image with caption/message
+                logger.info("Processing image through analyzer...")
                 bot_response = session_bot.process_image_message(image_data, incoming_msg, media_type)
-                logger.info(f"Image processed successfully")
+                logger.info(f"Image processed successfully, response length: {len(bot_response)}")
                 
                 resp = MessagingResponse()
                 resp.message(bot_response)
                 return str(resp), 200, {'Content-Type': 'text/xml; charset=utf-8'}
                 
+            except requests.exceptions.RequestException as e:
+                logger.error(f"Error downloading image from Twilio: {str(e)}", exc_info=True)
+                resp = MessagingResponse()
+                resp.message("छवि डाउनलोड करने में त्रुटि। कृपया पुनः प्रयास करें। / Error downloading image. Please try again.")
+                return str(resp), 200, {'Content-Type': 'text/xml; charset=utf-8'}
+            
+            except ValueError as e:
+                logger.error(f"Image validation error: {str(e)}", exc_info=True)
+                resp = MessagingResponse()
+                resp.message(f"छवि त्रुटि: {str(e)} / Image error: {str(e)}")
+                return str(resp), 200, {'Content-Type': 'text/xml; charset=utf-8'}
+                
             except Exception as e:
                 logger.error(f"Error processing image: {str(e)}", exc_info=True)
+                logger.error(f"Error type: {type(e).__name__}")
                 resp = MessagingResponse()
-                resp.message("छवि संसाधित करने में त्रुटि। कृपया पुनः प्रयास करें। / Error processing image. Please try again.")
+                error_msg = f"छवि संसाधित करने में त्रुटि: {type(e).__name__} / Error processing image: {type(e).__name__}"
+                resp.message(error_msg)
                 return str(resp), 200, {'Content-Type': 'text/xml; charset=utf-8'}
         
         # Validate text message
