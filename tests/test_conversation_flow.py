@@ -1,72 +1,37 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-Test script to demonstrate conversation flow with session management
-This tests that the bot remembers context between messages
-"""
-
+# Test the exact conversation flow from WhatsApp
 import sys
 import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
 
-# Add parent directory to path so we can import src modules
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from chatbot import SwasthyaGuide
 
-from src.chatbot import SwasthyaGuide
+print("=" * 60)
+print("Simulating WhatsApp Conversation Flow")
+print("=" * 60)
 
-def test_conversation_flow():
-    """Test that the bot maintains context across multiple messages"""
-    print("=" * 70)
-    print("Testing Conversation Flow: Symptom → Location Request → Clinic Search")
-    print("=" * 70)
-    
-    # Create a session for a user (simulating WhatsApp session)
-    user_phone = "+919876543210"
-    session_id = "whatsapp:+919876543210"
-    
-    # Initialize bot with session
-    bot = SwasthyaGuide(session_id=session_id, user_phone=user_phone)
-    
-    # Message 1: User reports fever
-    print("\n📱 USER MESSAGE 1: 'mujhe bukhar hai'")
-    print("-" * 70)
-    response1 = bot.process_message("mujhe bukhar hai")
-    print(f"🤖 BOT RESPONSE:\n{response1}")
-    
-    # Check if bot is waiting for location
-    print(f"\n📊 Bot State:")
-    print(f"   - Language: {bot.user_context['language']}")
-    print(f"   - Symptoms: {bot.user_context['symptoms']}")
-    print(f"   - Waiting for location: {bot.user_context['waiting_for_location']}")
-    
-    # Message 2: User provides location (this should now work!)
-    print("\n" + "=" * 70)
-    print("📱 USER MESSAGE 2: 'Lucknow'")
-    print("-" * 70)
-    response2 = bot.process_message("Lucknow")
-    print(f"🤖 BOT RESPONSE:\n{response2}")
-    
-    # Check bot state after location provided
-    print(f"\n📊 Bot State:")
-    print(f"   - Location: {bot.user_context['location']}")
-    print(f"   - Waiting for location: {bot.user_context['waiting_for_location']}")
-    
-    # Message 3: New symptom (testing new conversation)
-    print("\n" + "=" * 70)
-    print("📱 USER MESSAGE 3: 'sir dard ho raha hai'")
-    print("-" * 70)
-    response3 = bot.process_message("sir dard ho raha hai")
-    print(f"🤖 BOT RESPONSE:\n{response3[:500]}...")  # Truncate for readability
-    
-    print("\n" + "=" * 70)
-    print("✅ TEST COMPLETE")
-    print("=" * 70)
-    print("\nKEY IMPROVEMENTS:")
-    print("1. ✅ Bot remembers it asked for location")
-    print("2. ✅ When user says 'Lucknow', bot recognizes it as location")
-    print("3. ✅ Bot searches for clinics instead of treating it as new query")
-    print("4. ✅ Session state maintained across multiple messages")
-    print("=" * 70)
+# Create bot instance
+bot = SwasthyaGuide(session_id="test_user", user_phone="+919876543210")
 
+# Step 1: User says they have fever
+print("\n1. User: 'Mujhe bukhar hai'")
+response1 = bot.process_message("Mujhe bukhar hai")
+print(f"Bot: {response1[:200]}...")
+print(f"waiting_for_location: {bot.user_context.get('waiting_for_location')}")
 
-if __name__ == "__main__":
-    test_conversation_flow()
+# Step 2: User confirms they want clinic info
+print("\n2. User: 'Ha'")
+response2 = bot.process_message("Ha")
+print(f"Bot: {response2[:200]}...")
+print(f"waiting_for_location: {bot.user_context.get('waiting_for_location')}")
+
+# Step 3: User provides pincode
+print("\n3. User: '226010'")
+response3 = bot.process_message("226010")
+print(f"Bot: {response3[:400]}...")
+print(f"waiting_for_location: {bot.user_context.get('waiting_for_location')}")
+
+if "najdeeki" in response3 and "clinics mil gaye" in response3:
+    print("\n✅ SUCCESS: Bot found and returned clinics!")
+else:
+    print("\n❌ ISSUE: Bot did not return clinics properly")
+    print(f"Full response: {response3}")
