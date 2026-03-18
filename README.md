@@ -152,7 +152,6 @@ Prakalp-Swasthya/
 │   ├── config_loader.py    # Configuration management
 │   ├── emergency_handler.py # Emergency detection & response
 │   ├── health_responses.py # Health guidance responses
-│   ├── image_analyzer.py   # Image analysis for skin conditions
 │   ├── language_detector.py # Language detection
 │   └── symptom_checker.py  # Symptom extraction & checking
 │
