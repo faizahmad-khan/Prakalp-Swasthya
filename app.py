@@ -12,7 +12,6 @@ from twilio.twiml.messaging_response import MessagingResponse
 from src.chatbot import SwasthyaGuide
 from src.config_loader import Config
 from src.voice_handler import get_voice_handler
-import requests
 
 # Configure logging
 logging.basicConfig(
@@ -156,11 +155,11 @@ def whatsapp_webhook():
         # Log incoming message (remove PII in production)
         logger.info(f"Received message: '{incoming_msg}' from {sender[:15]}... (Media: {num_media})")
         
-        # Check if image/media is attached
+        # Handle media messages (voice only supported for now)
         if num_media > 0:
             logger.info(f"Processing {num_media} media file(s)")
-            media_url = request.values.get('MediaUrl0', '')
             media_type = request.values.get('MediaContentType0', '')
+            media_url = request.values.get('MediaUrl0', '')
             
             logger.info(f"Media URL: {media_url}, Type: {media_type}")
             
@@ -240,75 +239,15 @@ def whatsapp_webhook():
                     resp = MessagingResponse()
                     resp.message(error_msg)
                     return str(resp), 200, {'Content-Type': 'text/xml; charset=utf-8'}
-            
-            # --- IMAGE MESSAGE HANDLING ---
-            # Download and process image
-            try:
-                # Validate media URL exists
-                if not media_url:
-                    raise ValueError("Media URL not provided by Twilio")
-                
-                logger.info("Downloading image from Twilio...")
-                
-                # Check if Twilio credentials are configured
-                if not Config.TWILIO_ACCOUNT_SID or Config.TWILIO_ACCOUNT_SID.startswith('your_'):
-                    logger.error("Twilio credentials not configured!")
-                    raise ValueError("Server configuration error: Twilio credentials missing")
-                
-                # Download image from Twilio's media URL with authentication
-                # Twilio requires HTTP Basic Auth to access media files
-                auth = (Config.TWILIO_ACCOUNT_SID, Config.TWILIO_AUTH_TOKEN)
-                media_response = requests.get(media_url, auth=auth, timeout=15)
-                
-                # Check response status
-                if media_response.status_code == 401:
-                    logger.error("Twilio authentication failed - check credentials in .env")
-                    raise ValueError("Authentication failed. Please contact support.")
-                    
-                media_response.raise_for_status()
-                image_data = media_response.content
-                
-                logger.info(f"Image downloaded successfully: {len(image_data)} bytes, Type: {media_type}")
-                
-                # Validate image data
-                if len(image_data) < 100:
-                    raise ValueError(f"Downloaded image too small: {len(image_data)} bytes")
-                
-                # Process image with caption/message
-                logger.info("Processing image through analyzer...")
-                bot_response = session_bot.process_image_message(image_data, incoming_msg, media_type)
-                logger.info(f"Image processed successfully, response length: {len(bot_response)}")
-                
-                resp = MessagingResponse()
-                resp.message(bot_response)
-                return str(resp), 200, {'Content-Type': 'text/xml; charset=utf-8'}
-                
-            except requests.exceptions.RequestException as e:
-                logger.error(f"Error downloading image from Twilio: {str(e)}", exc_info=True)
-                resp = MessagingResponse()
-                
-                # Provide more specific error message
-                if "401" in str(e) or "Unauthorized" in str(e):
-                    error_msg = "⚠️ Server configuration error. Please contact administrator.\n\nसर्वर कॉन्फ़िगरेशन त्रुटि। कृपया व्यवस्थापक से संपर्क करें।"
-                else:
-                    error_msg = "छवि डाउनलोड करने में त्रुटि। कृपया पुनः प्रयास करें। / Error downloading image. Please try again."
-                
-                resp.message(error_msg)
-                return str(resp), 200, {'Content-Type': 'text/xml; charset=utf-8'}
-            
-            except ValueError as e:
-                logger.error(f"Image validation error: {str(e)}", exc_info=True)
-                resp = MessagingResponse()
-                resp.message(f"छवि त्रुटि: {str(e)} / Image error: {str(e)}")
-                return str(resp), 200, {'Content-Type': 'text/xml; charset=utf-8'}
-                
-            except Exception as e:
-                logger.error(f"Error processing image: {str(e)}", exc_info=True)
-                logger.error(f"Error type: {type(e).__name__}")
-                resp = MessagingResponse()
-                error_msg = f"छवि संसाधित करने में त्रुटि: {type(e).__name__} / Error processing image: {type(e).__name__}"
-                resp.message(error_msg)
-                return str(resp), 200, {'Content-Type': 'text/xml; charset=utf-8'}
+
+            # Non-audio media fallback (image analysis disabled)
+            logger.info("Non-audio media received while image analysis is disabled")
+            resp = MessagingResponse()
+            resp.message(
+                "Image analysis is temporarily disabled. Please send a text query.\n"
+                "Image analysis filhaal disabled hai. Kripya text message bhejein."
+            )
+            return str(resp), 200, {'Content-Type': 'text/xml; charset=utf-8'}
         
         # Validate text message
         if not incoming_msg:
