@@ -15,32 +15,6 @@ from .clinic_finder import check_for_clinic_request, extract_location, find_near
 
 logger = logging.getLogger(__name__)
 
-try:
-    from .image_analyzer import ImageAnalyzer
-    IMAGE_ANALYZER_AVAILABLE = True
-except ImportError as e:
-    IMAGE_ANALYZER_AVAILABLE = False
-    logger.warning(f"Image analyzer module not available: {e}. Image features disabled.")
-
-    class ImageAnalyzer:
-        """Fallback no-op image analyzer when dependencies are missing."""
-
-        def detect_image_request(self, user_input: str) -> bool:
-            return False
-
-        def get_image_analysis_instructions(self, language: str) -> str:
-            return "Image analysis is currently unavailable. Please ask a text health question."
-
-        def get_common_skin_conditions_info(self, language: str) -> str:
-            return "Skin image analysis is currently unavailable. Please consult a doctor for accurate diagnosis."
-
-        def analyze_skin_condition(self, image_data: bytes, language: str) -> dict:
-            return {
-                'success': False,
-                'error': 'Image analysis service is currently unavailable',
-                'analysis': {}
-            }
-
 # Database imports (optional, for conversation logging)
 try:
     from database import get_db_manager, Conversation, UserProfile, Analytics
@@ -73,8 +47,6 @@ class SwasthyaGuide:
             'waiting_for_location': False,
             'last_detected_symptoms': []
         }
-        # Initialize image analyzer
-        self.image_analyzer = ImageAnalyzer()
         
         # Initialize database connection if available
         if DB_AVAILABLE:
@@ -96,10 +68,9 @@ class SwasthyaGuide:
         except FileNotFoundError:
             self.config = {'default_language': 'hindi'}
     
-    def log_conversation(self, user_message: str, bot_response: str, 
-                        detected_intent: str = 'general', 
-                        message_type: str = 'text',
-                        image_analysis: dict = None):
+    def log_conversation(self, user_message: str, bot_response: str,
+                        detected_intent: str = 'general',
+                        message_type: str = 'text'):
         """
         Log conversation to database
         
@@ -107,8 +78,7 @@ class SwasthyaGuide:
             user_message: User's message
             bot_response: Bot's response
             detected_intent: Type of intent detected (symptom_check, clinic_search, etc.)
-            message_type: Type of message (text, image, voice)
-            image_analysis: Image analysis results if applicable
+            message_type: Type of message (text, voice)
         """
         if not self.db_enabled:
             logger.debug("Database logging disabled")
@@ -127,7 +97,6 @@ class SwasthyaGuide:
                     detected_symptoms=self.user_context.get('symptoms'),
                     detected_location=self.user_context.get('location'),
                     is_emergency=self.user_context.get('emergency_detected', False),
-                    image_analysis=image_analysis,
                     created_at=datetime.utcnow()
                 )
                 session.add(conversation)
@@ -181,7 +150,7 @@ class SwasthyaGuide:
         
         Args:
             user_input: User's message (text or transcribed voice)
-            message_type: Type of message ('text', 'voice', 'image')
+            message_type: Type of message ('text', 'voice')
         """
         # Detect language
         language = detect_language(user_input)
@@ -260,20 +229,6 @@ class SwasthyaGuide:
                 self.log_conversation(user_input, response, 'location_request', message_type)
                 return response
         
-        # Check if user is asking about image analysis
-        if self.image_analyzer.detect_image_request(user_input):
-            response = self.image_analyzer.get_image_analysis_instructions(language)
-            detected_intent = 'image_request'
-            self.log_conversation(user_input, response, detected_intent, message_type)
-            return response
-        
-        # Check if user wants skin condition info
-        if any(word in user_input.lower() for word in ['skin', 'rash', 'daad', 'kharish', 'त्वचा', 'खुजली']):
-            response = self.image_analyzer.get_common_skin_conditions_info(language)
-            detected_intent = 'skin_info'
-            self.log_conversation(user_input, response, detected_intent, message_type)
-            return response
-        
         # Check for emergency
         if detect_emergency(user_input):
             self.user_context['emergency_detected'] = True
@@ -324,76 +279,6 @@ class SwasthyaGuide:
         self.update_user_profile()
         
         return response
-    
-    def process_image_message(self, image_data: bytes, caption: str = "", content_type: str = "image/jpeg") -> str:
-        """
-        Process image message with optional caption
-        Returns formatted response with image analysis
-        """
-        try:
-            # Validate image_data
-            if not image_data or len(image_data) == 0:
-                logger.error("Empty image data received")
-                return "❌ छवि डेटा प्राप्त नहीं हुआ। / No image data received. Please try again."
-            
-            logger.info(f"Processing image: {len(image_data)} bytes, type: {content_type}")
-            
-            # Detect language from caption if provided
-            language = detect_language(caption) if caption else 'hindi'
-            
-            self.user_context['language'] = language
-            logger.info(f"Detected language: {language}")
-            
-            # Analyze the image
-            logger.info("Starting image analysis...")
-            result = self.image_analyzer.analyze_skin_condition(image_data, language)
-            logger.info(f"Analysis completed, success: {result['success']}")
-            
-            if not result['success']:
-                # Return error message
-                logger.warning(f"Image analysis failed: {result['error']}")
-                error_responses = {
-                    'hindi': f"❌ छवि त्रुटि: {result['error']}\n\nकृपया:\n• एक स्पष्ट फोटो भेजें\n• अच्छी रोशनी में फोटो लें\n• 10MB से छोटी छवि भेजें",
-                    'hinglish': f"❌ Image error: {result['error']}\n\nKripya:\n• Clear photo bhejein\n• Achhi lighting mein photo lein\n• 10MB se chhoti image bhejein",
-                    'english': f"❌ Image Error: {result['error']}\n\nPlease:\n• Send a clear photo\n• Take photo in good lighting\n• Send image smaller than 10MB"
-                }
-                response = error_responses.get(language, error_responses['hinglish'])
-                self.log_conversation(caption or "[Image]", response, 'image_analysis', 'image')
-                return response
-            
-            # Format successful analysis response
-            logger.info("Formatting analysis response...")
-            analysis = result['analysis']
-            recommendations = '\n'.join(analysis['recommendations'])
-            
-            response = f"""
-✅ Image analysis complete!
-
-{recommendations}
-
-{analysis['disclaimer']}
-
-💬 Kuch aur puchhna chahenge? / Any other questions?
-"""
-            
-            # Log conversation with image analysis
-            self.log_conversation(
-                caption or "[Image]", 
-                response, 
-                'image_analysis', 
-                'image',
-                image_analysis=result
-            )
-            self.update_user_profile()
-            
-            logger.info("Image processing completed successfully")
-            return response.strip()
-            
-        except Exception as e:
-            # Catch any unexpected errors
-            logger.error(f"Unexpected error in process_image_message: {str(e)}", exc_info=True)
-            error_msg = f"❌ अप्रत्याशित त्रुटि: {type(e).__name__} / Unexpected error: {type(e).__name__}\n\nकृपया पुनः प्रयास करें। / Please try again."
-            return error_msg
     
     def run_cli(self):
         """Run the chatbot in command-line interface mode"""
