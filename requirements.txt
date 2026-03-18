@@ -17,10 +17,8 @@ twilio==8.10.0
 # Security & Validation
 werkzeug==3.0.1
 
-# Image Processing (Required for image analysis feature)
-Pillow>=10.0.0
+# HTTP client
 requests==2.31.0
-numpy>=1.24.0
 
 # Optional: For enhanced features (uncomment as needed)
 
@@ -35,9 +33,6 @@ numpy>=1.24.0
 psycopg2-binary==2.9.9
 SQLAlchemy==2.0.35
 alembic==1.13.1
-
-# For API integration
-requests==2.31.0
 
 # Voice Message Processing (Speech-to-Text & Text-to-Speech)
 google-cloud-speech==2.21.0
