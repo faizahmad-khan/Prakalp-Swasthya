@@ -12,7 +12,34 @@ from .emergency_handler import detect_emergency, get_emergency_response
 from .symptom_checker import extract_symptoms
 from .health_responses import get_symptom_response, get_general_health_tips
 from .clinic_finder import check_for_clinic_request, extract_location, find_nearby_clinics
-from .image_analyzer import ImageAnalyzer
+
+logger = logging.getLogger(__name__)
+
+try:
+    from .image_analyzer import ImageAnalyzer
+    IMAGE_ANALYZER_AVAILABLE = True
+except ImportError as e:
+    IMAGE_ANALYZER_AVAILABLE = False
+    logger.warning(f"Image analyzer module not available: {e}. Image features disabled.")
+
+    class ImageAnalyzer:
+        """Fallback no-op image analyzer when dependencies are missing."""
+
+        def detect_image_request(self, user_input: str) -> bool:
+            return False
+
+        def get_image_analysis_instructions(self, language: str) -> str:
+            return "Image analysis is currently unavailable. Please ask a text health question."
+
+        def get_common_skin_conditions_info(self, language: str) -> str:
+            return "Skin image analysis is currently unavailable. Please consult a doctor for accurate diagnosis."
+
+        def analyze_skin_condition(self, image_data: bytes, language: str) -> dict:
+            return {
+                'success': False,
+                'error': 'Image analysis service is currently unavailable',
+                'analysis': {}
+            }
 
 # Database imports (optional, for conversation logging)
 try:
@@ -21,8 +48,6 @@ try:
 except ImportError:
     DB_AVAILABLE = False
     logger.warning("Database module not available - conversation logging disabled")
-
-logger = logging.getLogger(__name__)
 
 
 class SwasthyaGuide:

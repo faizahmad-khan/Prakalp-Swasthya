@@ -9,7 +9,11 @@ import json
 import logging
 from typing import Optional, List
 from pathlib import Path
-from sqlalchemy import or_
+
+try:
+    from sqlalchemy import or_ as sql_or
+except ImportError:
+    sql_or = None
 
 logger = logging.getLogger(__name__)
 
@@ -175,7 +179,7 @@ def search_clinics_in_db(location: str, limit: int = 5) -> List[dict]:
     Returns:
         List of clinic dictionaries
     """
-    if not DB_AVAILABLE:
+    if not DB_AVAILABLE or sql_or is None:
         logger.warning("Database not available for clinic search")
         return []
     
@@ -190,7 +194,7 @@ def search_clinics_in_db(location: str, limit: int = 5) -> List[dict]:
             search_term = f"%{location_clean}%"
             
             clinics = session.query(Clinic).filter(
-                or_(
+                sql_or(
                     Clinic.city.ilike(search_term),
                     Clinic.area.ilike(search_term),
                     Clinic.location_key.ilike(search_term),
