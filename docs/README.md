@@ -20,9 +20,6 @@ This folder contains all project documentation organized by topic.
 - **[PostgreSQL Upgrade Summary](POSTGRES_UPGRADE_SUMMARY.md)** - Technical changes for v2.0
 - **[Multilingual Support](MULTILINGUAL.md)** - Language detection and responses
 
-### Feature Documentation
-- **[Advanced Image Features](ADVANCED_IMAGE_FEATURES.md)** - Image analysis capabilities
-
 ---
 
 ## 🏗️ Architecture Overview
@@ -31,7 +28,6 @@ SwasthyaGuide is a multilingual healthcare chatbot with:
 - **8 Indian languages** support
 - **WhatsApp integration** via Twilio
 - **PostgreSQL database** for scalability
-- **Image analysis** for skin conditions
 - **Emergency detection** with instant alerts
 - **Clinic finder** for 8+ Indian cities
 
