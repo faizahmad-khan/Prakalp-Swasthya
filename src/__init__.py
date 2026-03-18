@@ -17,7 +17,6 @@ _EXPORT_MAP = {
     'get_emergency_response': ('src.emergency_handler', 'get_emergency_response'),
     'get_symptom_response': ('src.health_responses', 'get_symptom_response'),
     'get_general_health_tips': ('src.health_responses', 'get_general_health_tips'),
-    'ImageAnalyzer': ('src.image_analyzer', 'ImageAnalyzer'),
     'detect_language': ('src.language_detector', 'detect_language'),
     'extract_symptoms': ('src.symptom_checker', 'extract_symptoms'),
 }
@@ -32,7 +31,6 @@ __all__ = [
     'get_emergency_response',
     'get_symptom_response',
     'get_general_health_tips',
-    'ImageAnalyzer',
     'detect_language',
     'extract_symptoms',
 ]
