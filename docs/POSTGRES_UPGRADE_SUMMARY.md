@@ -94,7 +94,6 @@ Enhanced with database logging:
   - Logs user messages and bot responses
   - Tracks detected intent, symptoms, location
   - Records emergency flags
-  - Stores image analysis results
   - Limits message length to 5000 chars
 - Added `update_user_profile()` method
   - Creates or updates user profiles
@@ -103,7 +102,6 @@ Enhanced with database logging:
   - Stores location information
   - Records last activity timestamp
 - Updated `process_message()` to log all interactions
-- Updated `process_image_message()` to log image analyses
 - All logging is optional - app works without database
 
 ### 5. **`app.py`**
