@@ -24,29 +24,20 @@ twilio_number = Config.TWILIO_PHONE_NUMBER
 
 if not twilio_sid or twilio_sid.startswith("your_"):
     print("❌ TWILIO_ACCOUNT_SID: NOT CONFIGURED (placeholder)")
-    print("   → This will cause IMAGE DOWNLOAD to FAIL!")
+    print("   → This can break media/voice processing")
 else:
     print(f"✅ TWILIO_ACCOUNT_SID: {twilio_sid[:15]}...")
 
 if not twilio_token or twilio_token.startswith("your_"):
     print("❌ TWILIO_AUTH_TOKEN: NOT CONFIGURED (placeholder)")
-    print("   → This will cause IMAGE DOWNLOAD to FAIL!")
+    print("   → This can break media/voice processing")
 else:
     print(f"✅ TWILIO_AUTH_TOKEN: {twilio_token[:15]}...")
 
 print(f"✅ TWILIO_PHONE_NUMBER: {twilio_number}")
 
-# Check 2: Hugging Face API
-print("\n2️⃣ HUGGING FACE API:")
-print("-" * 70)
-hf_key = os.getenv("HUGGINGFACE_API_KEY")
-if hf_key and hf_key.startswith("hf_") and not hf_key.startswith("hf_your"):
-    print(f"✅ HUGGINGFACE_API_KEY: {hf_key[:20]}...")
-else:
-    print("❌ HUGGINGFACE_API_KEY: NOT CONFIGURED")
-
-# Check 3: Test Chatbot Response
-print("\n3️⃣ CHATBOT FUNCTIONALITY TEST:")
+# Check 2: Test Chatbot Response
+print("\n2️⃣ CHATBOT FUNCTIONALITY TEST:")
 print("-" * 70)
 try:
     bot = SwasthyaGuide()
@@ -79,16 +70,16 @@ except Exception as e:
     import traceback
     traceback.print_exc()
 
-# Check 4: Server Status
-print("\n4️⃣ SERVER STATUS:")
+# Check 3: Server Status
+print("\n3️⃣ SERVER STATUS:")
 print("-" * 70)
 print("   To check if your server is running:")
 print("   → Local: python app.py")
 print("   → Production: Check your hosting dashboard (Render/Heroku)")
 print("   → Test webhook: curl http://your-server-url/health")
 
-# Check 5: Common Issues
-print("\n5️⃣ COMMON ISSUES & SOLUTIONS:")
+# Check 4: Common Issues
+print("\n4️⃣ COMMON ISSUES & SOLUTIONS:")
 print("-" * 70)
 
 issues_found = []
@@ -98,13 +89,6 @@ if not twilio_sid or twilio_sid.startswith("your_"):
         'issue': 'Twilio credentials not configured',
         'symptom': 'Image download fails with "Error downloading image"',
         'fix': 'Get credentials from https://console.twilio.com and add to .env'
-    })
-
-if not hf_key or not hf_key.startswith("hf_"):
-    issues_found.append({
-        'issue': 'Hugging Face API not configured',
-        'symptom': 'AI image analysis won\'t work',
-        'fix': 'Get token from https://huggingface.co/settings/tokens and add to .env'
     })
 
 if issues_found:
