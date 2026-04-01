@@ -24,8 +24,6 @@ print("=" * 70)
 dependencies = {
     'flask': 'Flask',
     'twilio': 'Twilio',
-    'PIL': 'Pillow (Image Processing)',
-    'numpy': 'NumPy (Numerical Computing)',
     'requests': 'Requests (HTTP)',
     'psycopg2': 'PostgreSQL Driver',
     'sqlalchemy': 'SQLAlchemy (ORM)',
@@ -48,7 +46,6 @@ print("=" * 70)
 custom_modules = [
     'src.chatbot',
     'src.language_detector',
-    'src.image_analyzer',
     'src.health_responses',
     'src.symptom_checker',
     'src.clinic_finder',
@@ -87,40 +84,6 @@ for var in env_vars:
     else:
         print(f"⚠️  {var} - NOT SET")
 
-# Test image analyzer specifically
-print("\n" + "=" * 70)
-print("Testing Image Analyzer:")
-print("=" * 70)
-
-try:
-    from src.image_analyzer import ImageAnalyzer
-    from PIL import Image
-    import io
-    
-    analyzer = ImageAnalyzer()
-    print("✅ ImageAnalyzer instance created")
-    
-    # Create a tiny test image
-    test_img = Image.new('RGB', (100, 100), color=(200, 150, 150))
-    img_byte_arr = io.BytesIO()
-    test_img.save(img_byte_arr, format='JPEG')
-    test_data = img_byte_arr.getvalue()
-    
-    print(f"✅ Test image created ({len(test_data)} bytes)")
-    
-    # Try to analyze
-    result = analyzer.analyze_skin_condition(test_data, language='english')
-    if result['success']:
-        print("✅ Image analysis working correctly")
-    else:
-        print(f"⚠️  Image analysis returned error: {result['error']}")
-        
-except Exception as e:
-    print(f"❌ Image analyzer test failed: {str(e)}")
-    import traceback
-    traceback.print_exc()
-    all_ok = False
-
 # Test Twilio connection (optional)
 print("\n" + "=" * 70)
 print("Testing Twilio Connection (Optional):")
@@ -153,9 +116,8 @@ else:
     print("⚠️  SOME ISSUES DETECTED - Please review the errors above")
 print("=" * 70)
 
-print("\nIf image processing still fails, check:")
+print("\nIf bot responses still fail, check:")
 print("1. Server has enough memory (at least 512MB free)")
-print("2. PIL/Pillow is properly installed: pip install Pillow>=10.0.0")
-print("3. NumPy is properly installed: pip install numpy>=1.24.0")
+print("2. Required dependencies installed from requirements.txt")
+print("3. Database connectivity and credentials")
 print("4. Server logs for specific error messages")
-print("5. Twilio media URLs are accessible from your server")
